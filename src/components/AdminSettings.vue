@@ -83,11 +83,16 @@ export default {
             pollInterval: 10,
             saving: false,
             saveSuccess: false,
+            successTimer: null,
         }
     },
 
     async mounted() {
         await this.loadSettings()
+    },
+
+    beforeUnmount() {
+        if (this.successTimer) clearTimeout(this.successTimer)
     },
 
     methods: {
@@ -119,7 +124,7 @@ export default {
                 })
                 this.saveSuccess = true
                 this.jwtSecret = ''
-                setTimeout(() => { this.saveSuccess = false }, SUCCESS_MESSAGE_DURATION)
+                this.successTimer = setTimeout(() => { this.saveSuccess = false }, SUCCESS_MESSAGE_DURATION)
             } catch (e) {
                 console.error('Failed to save editor chooser settings', e)
             } finally {

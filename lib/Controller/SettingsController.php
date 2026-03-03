@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OCA\EditorChooser\Controller;
 
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\AuthorizedAdminSetting;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\DataResponse;
@@ -32,12 +33,13 @@ class SettingsController extends Controller {
         ]);
     }
 
+    #[AuthorizedAdminSetting(settings: \OCA\EditorChooser\Settings\AdminSettings::class)]
     public function saveSettings(): DataResponse {
         $onlyofficeUrl = $this->request->getParam('onlyofficeUrl', '');
         $collaboraUrl = $this->request->getParam('collaboraUrl', '');
         $jwtSecret = $this->request->getParam('jwtSecret', '');
-        $connectionLimit = (int) $this->request->getParam('connectionLimit', 20);
-        $pollInterval = (int) $this->request->getParam('pollInterval', 10);
+        $connectionLimit = max(1, min(100, (int) $this->request->getParam('connectionLimit', 20)));
+        $pollInterval = max(5, min(300, (int) $this->request->getParam('pollInterval', 10)));
 
         $this->config->setAppValue('editorchooser', 'onlyoffice_url', $onlyofficeUrl);
         $this->config->setAppValue('editorchooser', 'collabora_url', $collaboraUrl);

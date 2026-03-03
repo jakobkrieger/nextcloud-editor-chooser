@@ -70,8 +70,8 @@ Enable it by adding `"infoEnabled": true` to your Document Server's `local.json`
 ```
 
 After restarting the Document Server, verify the endpoint is accessible:
-```
-https://onlyoffice.example.com/info/info.json
+```bash
+curl https://onlyoffice.example.com/info/info.json
 ```
 
 ## Development Setup
