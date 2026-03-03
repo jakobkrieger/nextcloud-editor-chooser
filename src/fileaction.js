@@ -1,4 +1,4 @@
-import { registerFileAction, FileAction } from '@nextcloud/files'
+import { registerFileAction, FileAction, DefaultType } from '@nextcloud/files'
 import { t } from '@nextcloud/l10n'
 import { generateUrl } from '@nextcloud/router'
 import { createApp } from 'vue'
@@ -19,6 +19,8 @@ const SUPPORTED_MIMES = [
 registerFileAction(new FileAction({
     id: 'editorchooser-open-with',
     displayName: () => t('editorchooser', 'Open with\u2026'),
+    default: DefaultType.DEFAULT,
+    order: 1000,
     iconSvgInline: () => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>',
     enabled(nodes) {
         if (nodes.length !== 1) return false
