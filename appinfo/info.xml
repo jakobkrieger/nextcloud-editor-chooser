@@ -11,7 +11,7 @@
     fallback when the limit is reached.
   ]]></description>
   <version>1.0.0</version>
-  <licence>agpl</licence>
+  <licence>AGPL-3.0-or-later</licence>
   <author>jakobkrieger</author>
   <namespace>EditorChooser</namespace>
   <category>tools</category>

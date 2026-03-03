@@ -6,4 +6,9 @@ webpackConfig.entry = {
     settings: path.join(__dirname, 'src', 'settings.js'),
 }
 
+// Disable source maps in production to avoid 404 errors on .map files
+if (process.env.NODE_ENV === 'production') {
+    webpackConfig.devtool = false
+}
+
 module.exports = webpackConfig

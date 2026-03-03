@@ -1,8 +1,9 @@
-import { registerFileAction, FileAction, DefaultType } from '@nextcloud/files'
+import { registerFileAction, DefaultType } from '@nextcloud/files'
 import { t } from '@nextcloud/l10n'
-import { generateUrl } from '@nextcloud/router'
 import { createApp } from 'vue'
 import EditorChooserModal from './components/EditorChooserModal.vue'
+
+console.debug('[EditorChooser] fileaction.js loaded')
 
 const SUPPORTED_MIMES = [
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -16,7 +17,7 @@ const SUPPORTED_MIMES = [
     'application/vnd.ms-powerpoint',
 ]
 
-registerFileAction(new FileAction({
+registerFileAction({
     id: 'editorchooser-open-with',
     displayName: () => t('editorchooser', 'Open with\u2026'),
     default: DefaultType.DEFAULT,
@@ -40,4 +41,4 @@ registerFileAction(new FileAction({
         app.mount(container)
         return null
     },
-}))
+})
