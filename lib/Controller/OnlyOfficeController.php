@@ -44,7 +44,6 @@ class OnlyOfficeController extends Controller {
             $client = $this->clientService->newClient();
             $response = $client->get($infoUrl, [
                 'timeout' => 5,
-                'verify' => false,
             ]);
             $body = json_decode($response->getBody(), true);
             $active = $body['connections']['edit'] ?? 0;

@@ -147,8 +147,8 @@ export default {
             } catch (e) {
                 this.connectionStatus = 'error'
             }
-            // Start polling
-            if (!this.pollTimer) {
+            // Only start polling when OnlyOffice is reachable and configured
+            if (!this.pollTimer && this.connectionStatus === 'ok') {
                 this.pollTimer = setInterval(() => this.fetchConnections(), this.pollInterval)
             }
         },

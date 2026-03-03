@@ -67,6 +67,8 @@ import { t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 
+const SUCCESS_MESSAGE_DURATION = 3000
+
 export default {
     name: 'AdminSettings',
 
@@ -117,7 +119,7 @@ export default {
                 })
                 this.saveSuccess = true
                 this.jwtSecret = ''
-                setTimeout(() => { this.saveSuccess = false }, 3000)
+                setTimeout(() => { this.saveSuccess = false }, SUCCESS_MESSAGE_DURATION)
             } catch (e) {
                 console.error('Failed to save editor chooser settings', e)
             } finally {

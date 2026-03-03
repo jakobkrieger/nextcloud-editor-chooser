@@ -22,8 +22,7 @@ registerFileAction(new FileAction({
     iconSvgInline: () => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>',
     enabled(nodes) {
         if (nodes.length !== 1) return false
-        const mime = nodes[0].mime
-        return SUPPORTED_MIMES.some(m => mime === m || mime.startsWith('application/vnd.openxmlformats') || mime.startsWith('application/vnd.oasis.opendocument'))
+        return SUPPORTED_MIMES.includes(nodes[0].mime)
     },
     async exec(node) {
         const container = document.createElement('div')
