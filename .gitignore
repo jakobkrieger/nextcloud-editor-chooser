@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+/js/
+/css/
+/build/
+/package-lock.json
+/composer.lock
+/deploy.sh
